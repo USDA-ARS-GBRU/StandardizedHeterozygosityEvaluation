@@ -10,3 +10,20 @@ Generally, we are utilizing whole genome assemblies which are becoming more comp
 2. Extract non-repetitive snps.
 3. Count snps and divide by organism genome size.
 4. Multiply by 100 to get to a % heterozygosity.
+
+```
+module load mummer
+
+query='assembly-1.fasta'
+ref='assembly-2.fasta'
+out='assembly-1_onto_assembly-2'
+
+# Step 1 - nucmer alignment
+nucmer --prefix=${out} ${ref} ${query}
+
+# Step 2 - extract non-repeat snps
+show-snps -Clr ${out}.delta > ${out}_nonrepeat.snps
+
+# Step 3 - count the number of SNPS by counting the number of lines in the .snps file 
+wc -l ${out}_nonrepeat.snps
+```
