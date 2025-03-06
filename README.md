@@ -27,3 +27,4 @@ show-snps -Clr ${out}.delta > ${out}_nonrepeat.snps
 # Step 3 - count the number of SNPS by counting the number of lines in the .snps file 
 wc -l ${out}_nonrepeat.snps
 ```
+Each SNP is on a single line in the .snps file. Subtract the 5 header lines to count the number of SNPs. Divide the number of SNPs by the genome size and multiply by 100 to get the percent heterozygosity. For example, if there are 4088858 lines in the .snps file and the chile pepper genome is 3.5 Gb then (4,088,853 SNPs / 3,500,000,000 bp) x 100 = **0.1168% heterozygosity.**
