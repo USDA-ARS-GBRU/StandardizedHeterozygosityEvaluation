@@ -8,6 +8,7 @@
 
 
 module load mummer
+module load samtools
 
 # Query
 q_dir='STEP_5/YakHifi_HDA149_B5/'
@@ -33,7 +34,7 @@ querysz=$(cut -f2 ${query}.fai | paste -sd+ | bc)
 refsz=$(cut -f2 ${ref}.fai | paste -sd+ | bc)
 
 # calculate the average genome sizes
-avgsz=$(echo "("${genomesize1}"+"${genomesize2}")/2" | bc -l)
+avgsz=$(echo "("${querysz}"+"${refsz}")/2" | bc -l)
 
 # count the number of snps, and then subtract out the five header lines
 numsnp=$(wc -l ${out}_nonrepeat.snps | cut -f1 --delimiter=" ")
